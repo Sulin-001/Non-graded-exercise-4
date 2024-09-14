@@ -25,14 +25,12 @@ opponent_deck_size = deck_size
 game_over = False
 
 def display_card(card):
-    """ Helper function to display card details nicely """
     if card is None:
         return "Empty"
     name, health, attack, defense = card
     return f"{name}: Health: {health}, Attack: {attack}, Defense: {defense}"
 
 def attack_card(attacker, defender):
-    """ Function to simulate attack logic between two cards """
     if attacker is None or defender is None:
         return defender
 
@@ -52,7 +50,6 @@ def attack_card(attacker, defender):
     return defender_name, defender_health, defender_attack, defender_defense
 
 def print_decks():
-    """ Print the player and opponent decks """
     print("\nYour deck:")
     for i, card in enumerate(player_deck):
         print(f"{i+1}. {display_card(card)}")
@@ -61,7 +58,6 @@ def print_decks():
         print(f"{i+1}. {display_card(card)}")
 
 def select_player_card():
-    """ Get player's card choice and handle the selection """
     global selected_player_card_index
     while selected_player_card_index is None:
         try:
@@ -74,7 +70,6 @@ def select_player_card():
             print("Invalid input. Please enter a number between 1 and 5.")
 
 def select_opponent_card():
-    """ Get opponent's card choice and handle the attack """
     global selected_player_card_index
     while selected_player_card_index is not None:
         try:
@@ -102,7 +97,6 @@ def select_opponent_card():
             print("Invalid input. Please enter a number between 1 and 5.")
 
 def opponent_attack():
-    """ Handle opponent's attack """
     global player_deck, opponent_deck
     if not player_deck or not opponent_deck:
         return
@@ -121,7 +115,6 @@ def opponent_attack():
     check_game_over()
 
 def check_game_over():
-    """ Check if the game is over and display appropriate message """
     global game_over
 
     player_defeated = sum(1 for card in player_deck if card is None)
